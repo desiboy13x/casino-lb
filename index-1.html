@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08090b">
+<title>YOURBRAND | Monthly Leaderboard</title>
+<style>
+:root{--bg:#08090b;--panel:#101216;--gold:#ffc928;--gold2:#ffab00;--muted:#a7abb4;--line:#292d35;--white:#f6f7fb}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% -20%,#30220a 0,transparent 44%),var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,92%);margin:auto}
+header{border-bottom:1px solid #59430a;background:#090a0cdd;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-size:1.4rem;font-weight:900;letter-spacing:-.5px}.brand span{color:var(--gold)}.crown{color:var(--gold);margin-right:9px}
+nav{display:flex;gap:26px;color:#d7d9df;font-size:.94rem}nav a:hover,nav a.active{color:var(--gold)}
+.pill{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:12px 22px;background:linear-gradient(135deg,#ffdb38,#ffae00);color:#161106;font-weight:900;cursor:pointer}
+.hero{padding:48px 0 26px;display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:center}
+.eyebrow{font-weight:800;letter-spacing:3px;color:#e9eaf0;font-size:1.05rem}
+h1{font-size:clamp(2.5rem,5.8vw,4.6rem);line-height:.94;letter-spacing:-2px;margin:12px 0}
+h1 span{color:var(--gold)}
+.subtitle{color:#c4c7ce;font-size:1.03rem;line-height:1.6}
+.stats{border:1px solid #614600;background:linear-gradient(135deg,#101114,#08090b);border-radius:18px;padding:22px;display:grid;grid-template-columns:1fr 1px .8fr;gap:20px;align-items:center}
+.stats-label{font-size:.82rem;color:#e5e6ea;font-weight:800;letter-spacing:.7px;margin-bottom:14px}
+.timer{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.timebox{background:#0b0c0f;border:1px solid #2a2d33;border-radius:11px;text-align:center;padding:11px 4px}
+.timebox strong{display:block;font-size:1.5rem;color:var(--gold)}.timebox small{font-size:.68rem;color:#d2d4d9}
+.divider{height:82px;background:#8e6900}
+.pool{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;color:var(--gold);white-space:nowrap}
+.pool-note{margin-top:8px;color:#d7d8dc;font-size:.9rem}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 16px}
+.section-title h2{font-size:1.3rem;margin:0}.section-title p{color:var(--muted);margin:0;font-size:.88rem}
+.podium{display:grid;grid-template-columns:1fr 1.08fr 1fr;gap:18px;align-items:end;margin:28px 0 24px}
+.player-card{position:relative;text-align:center;background:linear-gradient(150deg,#15181e,#090a0d);border:1px solid #59606b;border-radius:16px;padding:25px 15px 16px;overflow:hidden}
+.player-card.first{border:2px solid var(--gold);box-shadow:0 0 26px #ffbf2630;padding-top:31px}
+.player-card.third{border-color:#a65c28}
+.medal{font-size:2rem;margin-bottom:6px}.place{font-weight:800;color:#e8e9ed}.player{font-size:1.12rem;font-weight:800;margin:12px 0}
+.wager{font-size:1.2rem;font-weight:800}.first .wager{color:var(--gold)}.wager-label{font-size:.75rem;color:var(--muted);letter-spacing:1px;margin-top:4px}
+.reward{display:block;margin:14px auto 0;max-width:170px;padding:9px 12px;border-radius:99px;background:#343943;font-weight:900}.first .reward{background:linear-gradient(135deg,#ffda35,#ffad00);color:#171106}.third .reward{background:#80431f}
+.table-wrap{overflow-x:auto;border:1px solid #343943;border-radius:14px;background:#090b0e}
+table{width:100%;border-collapse:collapse;min-width:560px}th,td{text-align:left;padding:14px 18px;border-bottom:1px solid #242830}
+th{font-size:.76rem;color:#d8dbe1;letter-spacing:.7px;background:#101318}td{font-size:.94rem}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#17140a}
+td:first-child{font-weight:800;width:70px}td:last-child{color:var(--gold);font-weight:800}
+.demo-note{color:#858b96;font-size:.78rem;margin:10px 2px 0}
+footer{border-top:1px solid #3b2b08;margin-top:32px;padding:23px 0 30px;text-align:center}
+.socials{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.socials a{border:1px solid #30343d;border-radius:999px;padding:10px 16px;color:#e5e7eb;font-size:.9rem}.socials a:hover{border-color:var(--gold);color:var(--gold)}
+.credit{color:#818793;font-size:.8rem;margin-top:18px}
+@media(max-width:760px){.nav{padding:14px 0;flex-wrap:wrap}.brand{font-size:1.2rem}nav{order:3;width:100%;justify-content:center;gap:18px;font-size:.86rem}.nav .pill{padding:10px 15px;font-size:.82rem}.hero{grid-template-columns:1fr;padding-top:34px}.stats{gap:12px;padding:15px}.timer{gap:5px}.timebox{padding:9px 2px}.timebox strong{font-size:1.2rem}.pool{font-size:1.8rem}.podium{gap:9px}.player-card{padding:20px 7px 12px}.player-card.first{padding-top:25px}.player{font-size:.9rem;overflow-wrap:anywhere}.wager{font-size:1rem}.reward{font-size:.8rem;padding:8px 5px}.medal{font-size:1.6rem}.place{font-size:.8rem}.section-title{align-items:flex-start;flex-direction:column}}
+@media(max-width:420px){.podium{grid-template-columns:1fr;align-items:stretch}.player-card.first{order:-1}.player-card{padding:18px}.stats{grid-template-columns:1fr}.divider{height:1px;width:100%}.pool{font-size:2rem}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#"><span class="crown">♛</span>YOUR<span>BRAND</span></a>
+    <nav><a href="#" class="active">Leaderboard</a><a href="#rankings">Rankings</a><a href="#rewards">Rewards</a><a href="#community">Community</a></nav>
+    <a class="pill" href="#community">PLAY NOW&nbsp; ›</a>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">MONTHLY</div>
+      <h1><span>LEADERBOARD</span></h1>
+      <p class="subtitle">Play more&nbsp; • &nbsp;Climb the ranks&nbsp; • &nbsp;Earn rewards</p>
+    </div>
+    <div class="stats" id="rewards">
+      <div>
+        <div class="stats-label">TIME REMAINING</div>
+        <div class="timer">
+          <div class="timebox"><strong id="days">00</strong><small>DAYS</small></div>
+          <div class="timebox"><strong id="hours">00</strong><small>HRS</small></div>
+          <div class="timebox"><strong id="minutes">00</strong><small>MIN</small></div>
+          <div class="timebox"><strong id="seconds">00</strong><small>SEC</small></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div><div class="stats-label">TOTAL REWARDS</div><div class="pool">$2,000</div><div class="pool-note">🏆 Top 10 earn rewards</div></div>
+    </div>
+  </section>
+
+  <section id="rankings">
+    <div class="section-title"><h2>🏆 Top Players</h2><p>Monthly wager rankings</p></div>
+    <div class="podium">
+      <article class="player-card">
+        <div class="medal">🥈</div><div class="place">2nd Place</div><div class="player">PlayerASH</div>
+        <div class="wager">$834,975</div><div class="wager-label">WAGERED</div><span class="reward">$500 REWARD</span>
+      </article>
+      <article class="player-card first">
+        <div class="medal">👑</div><div class="place">1st Place</div><div class="player">PlayerT62</div>
+        <div class="wager">$2,297,767</div><div class="wager-label">WAGERED</div><span class="reward">$800 REWARD</span>
+      </article>
+      <article class="player-card third">
+        <div class="medal">🥉</div><div class="place">3rd Place</div><div class="player">PlayerGES</div>
+        <div class="wager">$430,832</div><div class="wager-label">WAGERED</div><span class="reward">$300 REWARD</span>
+      </article>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>PLAYER</th><th>TOTAL WAGERED</th><th>REWARD</th></tr></thead>
+        <tbody>
+          <tr><td>4</td><td>Player710</td><td>$416,192</td><td>$100</td></tr>
+          <tr><td>5</td><td>PlayerWIN</td><td>$340,655</td><td>$75</td></tr>
+          <tr><td>6</td><td>PlayerERS</td><td>$293,464</td><td>$60</td></tr>
+          <tr><td>7</td><td>PlayerAKE</td><td>$237,241</td><td>$50</td></tr>
+          <tr><td>8</td><td>PlayerEAR</td><td>$210,042</td><td>$45</td></tr>
+          <tr><td>9</td><td>PlayerDKQ</td><td>$151,406</td><td>$40</td></tr>
+          <tr><td>10</td><td>PlayerCES</td><td>$130,892</td><td>$30</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="demo-note">Demo template: replace sample usernames, wager amounts, reward values, branding, and links with your own accurate information.</p>
+  </section>
+</main>
+<footer id="community">
+  <div class="wrap">
+    <div class="socials">
+      <a href="https://kick.com/" target="_blank" rel="noopener noreferrer">🟢 Kick</a>
+      <a href="https://discord.com/" target="_blank" rel="noopener noreferrer">💬 Discord</a>
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer">𝕏 Twitter / X</a>
+    </div>
+    <div class="credit">© <span id="year"></span> YOURBRAND · Demo leaderboard template</div>
+  </div>
+</footer>
+<script>
+function updateCountdown(){
+  const now=new Date();
+  const next=new Date(now.getFullYear(),now.getMonth()+1,1,0,0,0);
+  let seconds=Math.max(0,Math.floor((next-now)/1000));
+  const d=Math.floor(seconds/86400); seconds%=86400;
+  const h=Math.floor(seconds/3600); seconds%=3600;
+  const m=Math.floor(seconds/60); const s=seconds%60;
+  document.getElementById('days').textContent=String(d).padStart(2,'0');
+  document.getElementById('hours').textContent=String(h).padStart(2,'0');
+  document.getElementById('minutes').textContent=String(m).padStart(2,'0');
+  document.getElementById('seconds').textContent=String(s).padStart(2,'0');
+}
+document.getElementById('year').textContent=new Date().getFullYear();
+updateCountdown();setInterval(updateCountdown,1000);
+</script>
+</body>
+</html>
